@@ -6,4 +6,3 @@ class Micropost < ActiveRecord::Base
 
   default scope { order('created_at DESC') }
 end
-
