@@ -13,17 +13,17 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_secure_password
-  
+
+  def feed
+    Micropost.from_users_followed_by(self)
+  end
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
-  end
-
-  def feed
-    Micropost.where("user_id = ?", id)
   end
 
   def following?(other_user)
