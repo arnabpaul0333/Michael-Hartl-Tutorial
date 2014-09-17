@@ -1,0 +1,6 @@
+<%= provide(:title,"Show Photo") %>
+<h1>Photo</h1>
+<%= link_to "Back", photos_path(@photos), class: "btn btn-large btn-primary" %>
+<br><br>
+<%= image_tag @photo.image.url(:medium) %><br><br>
+<%= link_to "Delete Photo", photo_path(@photo), method: :delete, class: "btn btn-primary" %>
