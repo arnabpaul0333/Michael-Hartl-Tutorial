@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:destroy]
 
   def index
+    @q = User.search(params[:q])
+    @users = @q.result(distinct: true).includes(:microposts)
     @users = @users.paginate(page: params[:page], per_page: 10)
   end
   
@@ -22,10 +24,9 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
-      render 'new'2
+      render 'new'
     end
   end
-
 
   def edit
     @user = User.find(params[:id])

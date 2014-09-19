@@ -1,7 +1,12 @@
 <h1>All Microposts </h1>
-<% @microposts.each do |micropost| %><br>
-  <strong><%= micropost.content %></strong>
-  <span class= "timestamp" >
-  Posted <%= time_ago_in_words(micropost.created_at) %>ago.</span>
+<%= search_form_for @q do |f| %>
+ <%= f.label :content_cont %>
+ <%= f.search_field :content_cont %>
+ <%= f.submit %>
 <% end %>
 
+<% @microposts.each do |micropost| %><br>
+  <strong><%= micropost.content %></strong>
+  <span class= "timestamp">
+    Posted  <%= time_ago_in_words(micropost.created_at) %>ago.</span>
+<% end %>

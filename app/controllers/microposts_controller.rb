@@ -12,6 +12,11 @@ class MicropostsController < ApplicationController
       render 'static_pages/home'
     end
   end
+  
+  def index
+    @q = current_user.microposts.search(params[:q])
+    @microposts = @q.result(distinct: true)
+  end
 
   def show
     @micropost = Micropost.find(params[:id])
